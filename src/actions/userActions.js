@@ -40,25 +40,29 @@ import {
 export const login = (email, password) => async (dispatch) => {
     try {
 
-        dispatch({ type: LOGIN_REQUEST })
+        //dispatch({ type: LOGIN_REQUEST })
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+              'Content-Type': 'application/json'
             }
-        }
-
-        const response = await axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config);
-        const token = response.data.token;
-        Cookies.set('token', token); // Lưu trữ token trong cookie
-        console.log(response, Cookies.get('token')); // Hiển thị thông tin phản hồi và giá trị token từ cookie
-
-
-        dispatch({
+          }
+      
+          const response = await axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config);
+          const token = response.data.token;
+      
+          const setTokenCookie = (token) => {
+            Cookies.set('token', token); // Lưu trữ token trong cookie
+            console.log(response, Cookies.get('token')); // Hiển thị thông tin phản hồi và giá trị token từ cookie
+          };
+      
+          setTokenCookie(token);
+      
+          dispatch({
             type: LOGIN_SUCCESS,
-            payload: response.user
-        })
-
+            payload: response.data.user
+          });
+          
     } catch (error) {
         dispatch({
             type: LOGIN_FAIL,
