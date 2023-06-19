@@ -10,6 +10,7 @@ import { createOrder, clearErrors } from '../../actions/orderActions'
 import { useStripe, useElements, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
 
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 const options = {
     style: {
@@ -74,7 +75,8 @@ const Payment = ({ history }) => {
         try {
             const config = {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    authorization: Cookies.get('token')
                 }
             }
 
