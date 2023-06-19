@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import {
     ALL_PRODUCTS_REQUEST,
     ALL_PRODUCTS_SUCCESS,
@@ -66,7 +65,8 @@ export const newProduct = (productData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
             }
         }
 
@@ -91,7 +91,13 @@ export const deleteProduct = (id) => async (dispatch) => {
 
         dispatch({ type: DELETE_PRODUCT_REQUEST })
 
-        const { data } = await axios.delete(`https://be-tmdt.vercel.app/api/v1/admin/product/${id}`)
+        const config = {
+            headers: {
+                authorization: Cookies.get('token')
+            }
+        }
+
+        const { data } = await axios.delete(`https://be-tmdt.vercel.app/api/v1/admin/product/${id}`, config)
 
         dispatch({
             type: DELETE_PRODUCT_SUCCESS,
@@ -114,7 +120,8 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
             }
         }
 
@@ -138,7 +145,13 @@ export const getProductDetails = (id) => async (dispatch) => {
 
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/product/${id}`)
+        const config = {
+            headers: {
+                authorization: Cookies.get('token')
+            }
+        }
+
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/product/${id}`, config)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -160,7 +173,7 @@ export const newReview = (reviewData) => async (dispatch) => {
         const config = {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: Cookies.get('token')
+                authorization: Cookies.get('token')
             }
         }
 
@@ -206,8 +219,13 @@ export const getProductReviews = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: GET_REVIEWS_REQUEST })
-
-        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/reviews?id=${id}`)
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
+            }
+        }
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/reviews?id=${id}`, config)
 
         dispatch({
             type: GET_REVIEWS_SUCCESS,
@@ -228,8 +246,13 @@ export const deleteReview = (id, productId) => async (dispatch) => {
     try {
 
         dispatch({ type: DELETE_REVIEW_REQUEST })
-
-        const { data } = await axios.delete(`https://be-tmdt.vercel.app/api/v1/reviews?id=${id}&productId=${productId}`)
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
+            }
+        }
+        const { data } = await axios.delete(`https://be-tmdt.vercel.app/api/v1/reviews?id=${id}&productId=${productId}`, config)
 
         dispatch({
             type: DELETE_REVIEW_SUCCESS,

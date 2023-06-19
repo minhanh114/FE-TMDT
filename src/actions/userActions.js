@@ -40,7 +40,7 @@ import {
 export const login = (email, password) => async (dispatch) => {
     try {
 
-        //dispatch({ type: LOGIN_REQUEST })
+        dispatch({ type: LOGIN_REQUEST })
 
         const config = {
             headers: {
@@ -52,8 +52,8 @@ export const login = (email, password) => async (dispatch) => {
             .then((response) => {
                 console.log("response", response);
                 const token = response.data.token;
-                Cookies.set('token', token); // Lưu trữ token trong cookie
-                console.log(response, Cookies.get('token')); // Hiển thị thông tin phản hồi và giá trị token từ cookie
+                Cookies.set('token', token);
+                console.log(response, Cookies.get('token'));
                 dispatch({
                     type: LOGIN_SUCCESS,
                     payload: response.data.user
@@ -164,7 +164,8 @@ export const updatePassword = (passwords) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
             }
         }
 
@@ -260,8 +261,12 @@ export const allUsers = () => async (dispatch) => {
     try {
 
         dispatch({ type: ALL_USERS_REQUEST })
-
-        const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/admin/users')
+        const config = {
+            headers: {
+                authorization: Cookies.get('token')
+            }
+        }
+        const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/admin/users', config)
 
         dispatch({
             type: ALL_USERS_SUCCESS,
@@ -284,7 +289,8 @@ export const updateUser = (id, userData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
             }
         }
 
@@ -308,9 +314,13 @@ export const getUserDetails = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: USER_DETAILS_REQUEST })
+        const config = {
+            headers: {
+                authorization: Cookies.get('token')
+            }
+        }
 
-
-        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/admin/user/${id}`)
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/admin/user/${id}`, config)
 
         dispatch({
             type: USER_DETAILS_SUCCESS,

@@ -18,6 +18,7 @@ import {
     ORDER_DETAILS_FAIL,
     CLEAR_ERRORS
 } from '../constants/orderConstants'
+import Cookies from 'js-cookie';
 
 export const createOrder = (order) => async (dispatch, getState) => {
     try {
@@ -26,7 +27,8 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
             }
         }
 
@@ -50,8 +52,12 @@ export const myOrders = () => async (dispatch) => {
     try {
 
         dispatch({ type: MY_ORDERS_REQUEST });
-
-        const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/orders/me')
+        const config = {
+            headers: {
+                authorization: Cookies.get('token')
+            }
+        }
+        const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/orders/me', config)
 
         dispatch({
             type: MY_ORDERS_SUCCESS,
@@ -71,8 +77,13 @@ export const getOrderDetails = (id) => async (dispatch) => {
     try {
 
         dispatch({ type: ORDER_DETAILS_REQUEST });
+        const config = {
+            headers: {
+                authorization: Cookies.get('token')
+            }
+        }
 
-        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/order/${id}`)
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/order/${id}`, config)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -89,10 +100,13 @@ export const getOrderDetails = (id) => async (dispatch) => {
 // update Orders
 export const getOrderDetailsId = (id) => async (dispatch) => {
     try {
-        console.log("vao day")
         dispatch({ type: "ORDER_DETAILS_ID_REQUEST" });
-
-        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/order/detail/${id}`)
+        const config = {
+            headers: {
+                authorization: Cookies.get('token')
+            }
+        }
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/order/detail/${id}`, config)
 
         dispatch({
             type: "ORDER_DETAILS_ID_SUCCESS",
@@ -111,8 +125,13 @@ export const allOrders = () => async (dispatch) => {
     try {
 
         dispatch({ type: ALL_ORDERS_REQUEST });
-
-        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/admin/orders`)
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
+            }
+        }
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/admin/orders`, config)
 
         dispatch({
             type: ALL_ORDERS_SUCCESS,
@@ -135,7 +154,8 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                authorization: Cookies.get('token')
             }
         }
 
