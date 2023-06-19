@@ -9,7 +9,6 @@ import store from './store'
 
 import { positions, transitions, Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic'
-import Cookies from 'js-cookie';
 
 const options = {
   timeout: 3000,
@@ -17,12 +16,6 @@ const options = {
   transition: transitions.SCALE
 }
 
-// Kiểm tra xem đã có token trong cookie hay chưa
-const token = Cookies.get('token');
-if (token) {
-  // Lưu token vào Redux store (hoặc nơi lưu trữ khác) để có thể sử dụng trong ứng dụng
-  store.dispatch({ type: 'SET_TOKEN', payload: token });
-}
 
 ReactDOM.render(
   <Provider store={store} >
