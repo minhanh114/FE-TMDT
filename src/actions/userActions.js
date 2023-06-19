@@ -48,24 +48,27 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config)
-        .then((response) => {
-          const token = response.data.token;
-          Cookies.set('token', token); // Lưu trữ token trong cookie
-          console.log(response, Cookies.get('token')); // Hiển thị thông tin phản hồi và giá trị token từ cookie
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+        axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config)
+            .then((response) => {
+                console.log("response", response);
+                const token = response.data.token;
+                Cookies.set('token', token); // Lưu trữ token trong cookie
+                console.log(response, Cookies.get('token')); // Hiển thị thông tin phản hồi và giá trị token từ cookie
+                dispatch({
+                    type: LOGIN_SUCCESS,
+                    payload: response.data.user
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+            });
 
-     
 
-        dispatch({
-            type: LOGIN_SUCCESS,
-            payload: data.user
-        })
+
+
 
     } catch (error) {
+        console.log("error", error)
         dispatch({
             type: LOGIN_FAIL,
             payload: error.response.data.message

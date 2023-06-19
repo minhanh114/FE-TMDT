@@ -33,9 +33,9 @@ const Login = ({ history, location }) => {
 
     }, [dispatch, alert, isAuthenticated, error, history, redirect])
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
-        dispatch(login(email, password))
+        await login(email, password)(dispatch)
     }
 
     return (
@@ -51,16 +51,16 @@ const Login = ({ history, location }) => {
                                 <div className="form-group">
                                     <label htmlFor="email_field">Email</label>
                                     <div className="input-group">
-                                    <input
-                                        type="email"
-                                        id="email_field"
-                                        className="form-control"
-                                        value={email}
-                                        onChange={(e) => setEmail(e.target.value)}
-                                    />
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-                                    </div>
+                                        <input
+                                            type="email"
+                                            id="email_field"
+                                            className="form-control"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                        />
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text"><i class="bi bi-envelope-fill"></i></span>
+                                        </div>
                                     </div>
                                 </div>
 
