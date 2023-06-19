@@ -6,10 +6,10 @@ export const getProducers = (keyword = '', currentPage = 1, price, category, rat
 
         dispatch({ type: 'ALL_PRODUCTS_REQUEST' })
 
-        let link = `/api/v1/producers?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${rating}`
+        let link = `https://be-tmdt.vercel.app/api/v1/producers?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&ratings[gte]=${rating}`
 
         if (category) {
-            link = `/api/v1/producers?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}&ratings[gte]=${rating}`
+            link = `https://be-tmdt.vercel.app/api/v1/producers?keyword=${keyword}&page=${currentPage}&price[lte]=${price[1]}&price[gte]=${price[0]}&category=${category}&ratings[gte]=${rating}`
         }
 
         const { data } = await axios.get(link)
@@ -39,7 +39,7 @@ export const newCategory = (categoryData) => async (dispatch) => {
         }
         //update category
 
-        const { data } = await axios.post(`/api/v1/admin/category/new`, categoryData, config)
+        const { data } = await axios.post(`https://be-tmdt.vercel.app/api/v1/admin/category/new`, categoryData, config)
 
         dispatch({
             type: 'NEW_CATEGORY_SUCCESS',
@@ -59,7 +59,7 @@ export const getAdminCategory = () => async (dispatch) => {
 
         dispatch({ type: 'ADMIN_CATEGORY_REQUEST' })
 
-        const { data } = await axios.get(`/api/v1/admin/category`)
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/admin/category`)
 
         dispatch({
             type: 'ADMIN_CATEGORY_SUCCESS',
@@ -85,7 +85,7 @@ export const updateCategory = (id, categoryData) => async (dispatch) => {
             }
         }
         
-        const { data } = await axios.put(`/api/v1/admin/category/${id}`, categoryData, config)
+        const { data } = await axios.put(`https://be-tmdt.vercel.app/api/v1/admin/category/${id}`, categoryData, config)
 
         dispatch({
             type: 'UPDATE_CATEGORY_SUCCESS',
@@ -103,7 +103,7 @@ export const updateCategory = (id, categoryData) => async (dispatch) => {
 export const deleteCategory = (id) => async (dispatch) => {
     try {
         dispatch({ type: 'DELETE_CATEGORY_REQUEST' })
-        const { data } = await axios.delete(`/api/v1/admin/category/${id}`)
+        const { data } = await axios.delete(`https://be-tmdt.vercel.app/api/v1/admin/category/${id}`)
 
         dispatch({
             type: 'DELETE_CATEGORY_SUCCESS',
@@ -121,7 +121,7 @@ export const deleteCategory = (id) => async (dispatch) => {
 export const getCategoryDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: 'CATEGORY_DETAILS_REQUEST' })
-        const { data } = await axios.get(`/api/v1/admin/category/${id}`)
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/admin/category/${id}`)
 
         dispatch({
             type: 'CATEGORY_DETAILS_SUCCESS',

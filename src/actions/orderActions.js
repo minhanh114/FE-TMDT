@@ -30,7 +30,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.post('/api/v1/order/new', order, config)
+        const { data } = await axios.post('https://be-tmdt.vercel.app/api/v1/order/new', order, config)
 
         dispatch({
             type: CREATE_ORDER_SUCCESS,
@@ -51,7 +51,7 @@ export const myOrders = () => async (dispatch) => {
 
         dispatch({ type: MY_ORDERS_REQUEST });
 
-        const { data } = await axios.get('/api/v1/orders/me')
+        const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/orders/me')
 
         dispatch({
             type: MY_ORDERS_SUCCESS,
@@ -72,7 +72,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
 
         dispatch({ type: ORDER_DETAILS_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/order/${id}`)
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/order/${id}`)
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -92,7 +92,7 @@ export const getOrderDetailsId = (id) => async (dispatch) => {
         console.log("vao day")
         dispatch({ type: "ORDER_DETAILS_ID_REQUEST" });
 
-        const { data } = await axios.get(`/api/v1/order/detail/${id}`)
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/order/detail/${id}`)
 
         dispatch({
             type: "ORDER_DETAILS_ID_SUCCESS",
@@ -112,7 +112,7 @@ export const allOrders = () => async (dispatch) => {
 
         dispatch({ type: ALL_ORDERS_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/admin/orders`)
+        const { data } = await axios.get(`https://be-tmdt.vercel.app/api/v1/admin/orders`)
 
         dispatch({
             type: ALL_ORDERS_SUCCESS,
@@ -139,7 +139,7 @@ export const updateOrder = (id, orderData) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.put(`/api/v1/admin/order/${id}`, orderData, config)
+        const { data } = await axios.put(`https://be-tmdt.vercel.app/api/v1/admin/order/${id}`, orderData, config)
 
         dispatch({
             type: UPDATE_ORDER_SUCCESS,
