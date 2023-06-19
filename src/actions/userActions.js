@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import Cookies from 'js-cookie';
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
@@ -47,9 +48,17 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config, {
-            withCredentials: true,
-          })
+        const { data } = axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config)
+        .then((response) => {
+          const token = response.data.token;
+          Cookies.set('token', token); // Lưu trữ token trong cookie
+          console.log(response, Cookies.get('token')); // Hiển thị thông tin phản hồi và giá trị token từ cookie
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+     
 
         dispatch({
             type: LOGIN_SUCCESS,
