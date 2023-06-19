@@ -258,3 +258,21 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
             return state;
     }
 }
+
+const initialState = {
+    token: null,
+    // các trạng thái khác của người dùng
+};
+
+export const authToken = (state = initialState, action) => {
+    switch (action.type) {
+        case 'SET_TOKEN':
+            return {
+                ...state,
+                token: action.payload,
+            };
+        // các trường hợp xử lý khác
+        default:
+            return state;
+    }
+}
