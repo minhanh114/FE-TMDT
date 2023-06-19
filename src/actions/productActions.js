@@ -31,6 +31,7 @@ import {
     CLEAR_ERRORS
 
 } from '../constants/productConstants'
+import Cookies from 'js-cookie';
 
 export const getProducts = (keyword = '', currentPage = 1, price, category, rating = 0) => async (dispatch) => {
     try {
@@ -156,10 +157,10 @@ export const newReview = (reviewData) => async (dispatch) => {
     try {
 
         dispatch({ type: NEW_REVIEW_REQUEST })
-
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: Cookies.get('token')
             }
         }
 

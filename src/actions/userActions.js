@@ -44,7 +44,7 @@ export const login = (email, password) => async (dispatch) => {
 
         const config = {
             headers: {
-              'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             }
         }
 
@@ -108,8 +108,12 @@ export const loadUser = () => async (dispatch) => {
     try {
 
         dispatch({ type: LOAD_USER_REQUEST })
-
-        const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/me')
+        const config = {
+            headers: {
+                authorization: Cookies.get('token')
+            }
+        }
+        const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/me', config)
 
         dispatch({
             type: LOAD_USER_SUCCESS,
@@ -132,7 +136,8 @@ export const updateProfile = (userData) => async (dispatch) => {
 
         const config = {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                authorization: Cookies.get('token')
             }
         }
 
