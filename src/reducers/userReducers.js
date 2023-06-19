@@ -49,29 +49,20 @@ export const authReducer = (state = { user: {} }, action) => {
             }
 
         case LOGIN_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                isAuthenticated: true,
-                user: action.payload,
-                token: action.payload.token
-            }
-
         case REGISTER_USER_SUCCESS:
         case LOAD_USER_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 isAuthenticated: true,
-                user: action.payload,
+                user: action.payload
             }
 
         case LOGOUT_SUCCESS:
             return {
                 loading: false,
                 isAuthenticated: false,
-                user: null,
-                token: null
+                user: null
             }
 
         case LOAD_USER_FAIL:
@@ -263,24 +254,6 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
                 error: null
             }
 
-        default:
-            return state;
-    }
-}
-
-const initialState = {
-    token: null,
-    // các trạng thái khác của người dùng
-};
-
-export const authToken = (state = initialState, action) => {
-    switch (action.type) {
-        case 'SET_TOKEN':
-            return {
-                ...state,
-                token: action.payload,
-            };
-        // các trường hợp xử lý khác
         default:
             return state;
     }

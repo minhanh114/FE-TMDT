@@ -40,11 +40,11 @@ import {
 export const login = (email, password) => async (dispatch) => {
     try {
 
-        dispatch({ type: LOGIN_REQUEST })
+        //dispatch({ type: LOGIN_REQUEST })
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+              'Content-Type': 'application/json'
             }
         }
 
