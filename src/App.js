@@ -51,19 +51,23 @@ import { loadStripe } from '@stripe/stripe-js'
 import NewCategory from './components/admin/NewCategory'
 import CategoryList from './components/admin/CategoryList'
 import UpdateCategory from './components/admin/updateCategory'
-
+import Cookies from 'js-cookie';
 
 //Update category
 
 function App() {
 
   const [stripeApiKey, setStripeApiKey] = useState('');
-
+  const config = {
+    headers: {
+        authorization: Cookies.get('token')
+    }
+}
   useEffect(() => {
     store.dispatch(loadUser())
 
     async function getStripApiKey() {
-      const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/stripeapi');
+      const { data } = await axios.get('https://be-tmdt.vercel.app/api/v1/stripeapi', config);
 
       setStripeApiKey(data.stripeApiKey)
     }
