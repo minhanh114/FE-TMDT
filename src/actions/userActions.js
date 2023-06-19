@@ -47,7 +47,9 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config)
+        const { data } = await axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config, {
+            withCredentials: true,
+          })
 
         dispatch({
             type: LOGIN_SUCCESS,
