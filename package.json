@@ -60,5 +60,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://be-tmdt.vercel.app/"
+  "proxy": "http://be-tmdt.vercel.app/"
 }
