@@ -222,7 +222,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     try {
 
-        await axios.get('/api/v1/logout')
+        await axios.get('https://be-tmdt.vercel.app/api/v1/logout')
 
         dispatch({
             type: LOGOUT_SUCCESS,

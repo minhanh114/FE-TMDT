@@ -29,7 +29,7 @@ export default function ChartIncome() {
     useEffect(() => {
         const getStats = async () => {
             try {
-                const res = await axios.get('/api/v1/admin/orders/income')
+                const res = await axios.get('https://be-tmdt.vercel.app/api/v1/admin/orders/income')
                 res.data.map((item) =>
                     setUserStats((prev) => [
                         ...prev,

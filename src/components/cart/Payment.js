@@ -79,7 +79,7 @@ const Payment = ({ history }) => {
             }
 
             if (paymentMethod === 'card') {
-                res = await axios.post('/api/v1/payment/process', paymentData, config);
+                res = await axios.post('https://be-tmdt.vercel.app/api/v1/payment/process', paymentData, config);
 
                 const clientSecret = res.data.client_secret;
 
