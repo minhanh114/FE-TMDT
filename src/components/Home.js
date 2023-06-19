@@ -29,12 +29,12 @@ const Home = ({ match }) => {
     const [rating, setRating] = useState(0)
 
     //const categories = [
-      //  'Giày Sneakers',
-        //'Giày Casual',
-        //'Giày Sandal',
-        //'Giày Boots',
-        //'Giày công sở',
-        //'Giày cho trẻ em',
+    //  'Giày Sneakers',
+    //'Giày Casual',
+    //'Giày Sandal',
+    //'Giày Boots',
+    //'Giày công sở',
+    //'Giày cho trẻ em',
     //]
 
     const alert = useAlert();
@@ -121,21 +121,22 @@ const Home = ({ match }) => {
                                             </h4>
                                             <Range
                                                 marks={{
-                                                    100000: `100.000`,
-                                                    10000000: `10.000.000`
+                                                    100000: '100.000',
+                                                    10000000: '10.000.000'
                                                 }}
-                                                min={100}
+                                                min={100000}
                                                 max={10000000}
-                                                defaultValue={[1, 10000000]}
+                                                defaultValue={[100000, 10000000]}
                                                 tipFormatter={value => `${value}`}
                                                 tipProps={{
-                                                    placement: "top",
+                                                    placement: 'top',
                                                     visible: true
                                                 }}
                                                 value={price}
                                                 onChange={price => setPrice(price)}
                                             />
-                                            <br/>
+
+                                            <br />
                                             <hr className="my-3" />
 
                                             <div className="mt-5">
@@ -179,7 +180,7 @@ const Home = ({ match }) => {
                                 </Fragment>
                             ) : (
                                 products.map(product => (
-                                    <Product key={product._id} product={product} col={3}/>
+                                    <Product key={product._id} product={product} col={3} />
                                 ))
                             )}
 

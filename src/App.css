@@ -1052,6 +1052,16 @@ a {
   color: red;
 }
 
+@font-face {
+  font-family: "custom-001";
+  src: url("https://db.onlinewebfonts.com/t/d866d1b97392f17f9abb424d7314c559.eot"); /* IE9*/
+  src: url("https://db.onlinewebfonts.com/t/d866d1b97392f17f9abb424d7314c559.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+  url("https://db.onlinewebfonts.com/t/d866d1b97392f17f9abb424d7314c559.woff2") format("woff2"), /* chrome firefox */
+  url("https://db.onlinewebfonts.com/t/d866d1b97392f17f9abb424d7314c559.woff") format("woff"), /* chrome firefox */
+  url("https://db.onlinewebfonts.com/t/d866d1b97392f17f9abb424d7314c559.ttf") format("truetype"), /* chrome firefox opera Safari, Android, iOS 4.2+*/
+  url("https://db.onlinewebfonts.com/t/d866d1b97392f17f9abb424d7314c559.svg#custom-001") format("svg"); /* iOS 4.1- */
+}
+
 /*---------------*/
 /*.btn-danger {
   background-color: blue; /* Màu nền của button */
