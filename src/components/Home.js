@@ -24,7 +24,7 @@ const Range = createSliderWithTooltip(Slider.Range)
 
 const Home = ({ match }) => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [price, setPrice] = useState([[100000, 10000000]])
+    const [price, setPrice] = useState([100000, 10000000])
     const [categoryi, setCategory] = useState('')
     const [rating, setRating] = useState(0)
 
