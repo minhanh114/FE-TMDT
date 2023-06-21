@@ -40,6 +40,10 @@ const ProductsList = ({ history }) => {
 
     }, [dispatch, alert, error, deleteError, isDeleted, history])
 
+    const deleteProductHandler = (id) => {
+        dispatch(deleteProduct(id))
+    }
+    
     const setProducts = () => {
         const data = {
             columns: [
@@ -119,9 +123,7 @@ const ProductsList = ({ history }) => {
         return data;
     }
 
-    const deleteProductHandler = (id) => {
-        dispatch(deleteProduct(id))
-    }
+    
 
     return (
         <Fragment>
