@@ -232,6 +232,8 @@ export const logout = () => async (dispatch) => {
 
         await axios.get('https://be-tmdt.vercel.app/api/v1/logout')
 
+        Cookies.remove('token')
+        
         dispatch({
             type: LOGOUT_SUCCESS,
         })
