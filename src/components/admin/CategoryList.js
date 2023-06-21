@@ -1,44 +1,38 @@
-import React, { Fragment, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { MDBDataTable } from 'mdbreact'
+import React, { Fragment, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { MDBDataTable } from 'mdbreact';
+import MetaData from '../layout/MetaData';
+import Loader from '../layout/Loader';
+import Sidebar from './Sidebar';
+import { useAlert } from 'react-alert';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearErrors, deleteCategory, getAdminCategory } from '../../actions/categoryActions';
 
-import MetaData from '../layout/MetaData'
-import Loader from '../layout/Loader'
-import Sidebar from './Sidebar'
-
-import { useAlert } from 'react-alert'
-import { useDispatch, useSelector } from 'react-redux'
-import { clearErrors, deleteCategory } from '../../actions/categoryActions'
-import { getAdminCategory } from '../../actions/categoryActions'
-//update category
 const ProducersList = ({ history }) => {
-
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { isDeleted } = useSelector(state => state.udCategory);
-
-    const { loading, error, category } = useSelector(state => state.category);
+    const { isDeleted } = useSelector((state) => state.udCategory);
+    const { loading, error, category } = useSelector((state) => state.category);
 
     useEffect(() => {
         dispatch(getAdminCategory());
 
         if (error) {
             alert.error(error);
-            dispatch(clearErrors())
+            dispatch(clearErrors());
         }
 
         if (isDeleted) {
             alert.success('Category deleted successfully');
             history.push('/admin/categories');
-            dispatch({ type: 'DELETE_CATEGORY_RESET' })
+            dispatch({ type: 'DELETE_CATEGORY_RESET' });
         }
+    }, [dispatch, alert, error, history, isDeleted]);
 
-    }, [dispatch, alert, error, history, isDeleted])
-
-    const deleteCategoryHandler = (id) =>{
+    const deleteCategoryHandler = (id) => {
         dispatch(deleteCategory(id));
-    }
+    };
 
     const setProducers = () => {
         const data = {
@@ -46,41 +40,41 @@ const ProducersList = ({ history }) => {
                 {
                     label: 'ID',
                     field: 'id',
-                    sort: 'asc'
+                    sort: 'asc',
                 },
                 {
                     label: 'Tên loại sản phẩm',
                     field: 'name',
-                    sort: 'asc'
+                    sort: 'asc',
                 },
                 {
                     label: 'Mô tả',
                     field: 'description',
-                    sort: 'asc'
-                },  
+                    sort: 'asc',
+                },
                 {
                     label: 'Hành động',
                     field: 'actions',
                 },
             ],
-            rows: []
+            rows: [],
         };
-    
-        category.forEach(producer => {
+
+        category.forEach((producer) => {
             data.rows.push({
                 id: producer._id,
                 name: producer.name,
                 description: producer.description,
-                actions: <Fragment>
-                    <Link to={`/admin/category/${producer._id}`} className="btn btn-primary py-1 px-2">
-                        <i className="fa fa-pencil"></i>
-                    </Link>
-                    <button className="btn btn-danger py-1 px-2 ml-2" data-toggle="modal" data-target="#exampleModal" >
-                        <i className="fa fa-trash"></i>
-                    </button>
-                    {/* model delete */}
-                    <div>
-                        <div className="modal fade show" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                actions: (
+                    <Fragment>
+                        <Link to={`/admin/category/${producer._id}`} className="btn btn-primary py-1 px-2">
+                            <i className="fa fa-pencil"></i>
+                        </Link>
+                        <button className="btn btn-danger py-1 px-2 ml-2" data-toggle="modal" data-target={`#exampleModal${producer._id}`}>
+                            <i className="fa fa-trash"></i>
+                        </button>
+                        {/* model delete */}
+                        <div className="modal fade show" id={`exampleModal${producer._id}`} tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div className="modal-dialog" role="document">
                                 <div className="modal-content">
                                     <div className="modal-header">
@@ -89,8 +83,8 @@ const ProducersList = ({ history }) => {
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        Bạn có muốn xóa không
+                                    <div className="modal-body">
+                                        Bạn có muốn xóa không?
                                     </div>
                                     <div className="modal-footer">
                                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Hủy</button>
@@ -99,17 +93,13 @@ const ProducersList = ({ history }) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </Fragment>
-            })
-        })
+                    </Fragment>
+                ),
+            });
+        });
 
         return data;
-    }
-
-    // const deleteProductHandler = (id) => {
-    //     dispatch(deleteProduct(id))
-    // }
+    };
 
     return (
         <Fragment>
@@ -123,9 +113,15 @@ const ProducersList = ({ history }) => {
                 <div className="col-12 col-md-10">
                     <Fragment>
                         <h1 className="my-5">Tất cả loại sản phẩm</h1>
-                        <Link to='/admin/category'><button type="button" className="btn btn-primary">Thêm mới</button></Link>
+                        <Link to="/admin/category">
+                            <button type="button" className="btn btn-primary">
+                                Thêm mới
+                            </button>
+                        </Link>
 
-                        {loading ? <Loader /> : (
+                        {loading ? (
+                            <Loader />
+                        ) : (
                             <MDBDataTable
                                 data={setProducers()}
                                 className="px-3"
@@ -134,13 +130,11 @@ const ProducersList = ({ history }) => {
                                 hover
                             />
                         )}
-
                     </Fragment>
                 </div>
             </div>
-
         </Fragment>
-    )
-}
+    );
+};
 
-export default ProducersList
+export default ProducersList;
