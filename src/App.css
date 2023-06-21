@@ -151,7 +151,9 @@ nav {
   color: #2e2e2e;
   text-decoration: none;
   position: relative;
-  text-indent: 20px ;
+}
+.card-title{
+  text-indent: 20px;
 }
 .card-title a:hover {
   color: #fa9c23;
