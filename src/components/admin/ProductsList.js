@@ -1,11 +1,9 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MDBDataTable } from 'mdbreact';
-
 import MetaData from '../layout/MetaData';
 import Loader from '../layout/Loader';
 import Sidebar from './Sidebar';
-
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAdminProducts, deleteProduct, clearErrors } from '../../actions/productActions';
@@ -14,6 +12,8 @@ import { DELETE_PRODUCT_RESET } from '../../constants/productConstants';
 const ProductsList = ({ history }) => {
   const alert = useAlert();
   const dispatch = useDispatch();
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
 
   const { loading, error, products } = useSelector((state) => state.products);
@@ -38,10 +38,6 @@ const ProductsList = ({ history }) => {
       dispatch({ type: DELETE_PRODUCT_RESET });
     }
   }, [dispatch, alert, error, deleteError, isDeleted, history]);
-
-  const deleteProductHandler = (id) => {
-    dispatch(deleteProduct(id));
-  };
 
   const setProducts = () => {
     const data = {
@@ -93,44 +89,24 @@ const ProductsList = ({ history }) => {
             </Link>
             <button
               className="btn btn-danger py-1 px-2 ml-2"
-              onClick={() => setSelectedProductId(product._id)}
-              data-toggle="modal"
-              data-target={`#exampleModal${product._id}`}
+              onClick={() => {
+                setSelectedProductId(product._id);
+                setShowDeleteModal(true);
+              }}
             >
               <i className="bi bi-trash3"></i>
             </button>
-            {/* modal delete */}
-            <div>
-              <div className="modal fade" id={`exampleModal${product._id}`} tabIndex={-1} role="dialog" aria-labelledby={`exampleModalLabel${product._id}`} aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title" id={`exampleModalLabel${product._id}`}>
-                        Thông báo!
-                      </h5>
-                      <button type="button" className="close" data-dismiss={`#exampleModal${product._id}`} aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                      </button>
-                    </div>
-                    <div className="modal-body">Bạn có muốn xóa không?</div>
-                    <div className="modal-footer">
-                      <button type="button" className="btn btn-secondary" data-dismiss={`#exampleModal${product._id}`}>
-                        Hủy
-                      </button>
-                      <button type="button" className="btn btn-danger" onClick={() => deleteProductHandler(selectedProductId)} data-dismiss={`#exampleModal${product._id}`}>
-                        Xóa
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </Fragment>
         ),
       });
     });
 
     return data;
+  };
+
+  const deleteProductHandler = (id) => {
+    dispatch(deleteProduct(id));
+    setShowDeleteModal(false);
   };
 
   return (
@@ -155,6 +131,48 @@ const ProductsList = ({ history }) => {
               <Loader />
             ) : (
               <MDBDataTable data={setProducts()} className="px-3" bordered striped hover />
+            )}
+
+            {showDeleteModal && (
+              <div className="modal-backdrop fade show">
+                <div className="modal" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
+                  <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">
+                          Thông báo!
+                        </h5>
+                        <button
+                          type="button"
+                          className="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                          onClick={() => setShowDeleteModal(false)}
+                        >
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div className="modal-body">Bạn có muốn xóa không?</div>
+                      <div className="modal-footer">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          onClick={() => setShowDeleteModal(false)}
+                        >
+                          Hủy
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          onClick={() => deleteProductHandler(selectedProductId)}
+                        >
+                          Xóa
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
           </Fragment>
         </div>
