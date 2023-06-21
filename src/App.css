@@ -152,7 +152,9 @@ nav {
   text-decoration: none;
   position: relative;
 }
-
+.card-title {
+  text-align: center;
+}
 .card-title a:hover {
   color: #fa9c23;
   text-decoration: none;
