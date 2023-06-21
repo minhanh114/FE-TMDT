@@ -48,20 +48,14 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        axios.post('https://be-tmdt.vercel.app/api/v1/login', { email, password }, config)
-            .then((response) => {
-                console.log("response", response);
-                const token = response.data.token;
-                Cookies.set('token', token);
-                console.log(response, Cookies.get('token'));
-                dispatch({
-                    type: LOGIN_SUCCESS,
-                    payload: response.data.user
-                })
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        const { data } = await axios.post('/api/v1/login', { email, password }, config);
+
+        Cookies.set('token', data.token);
+
+        dispatch({
+            type: LOGIN_SUCCESS,
+            payload: data.user,
+        });
 
 
 
