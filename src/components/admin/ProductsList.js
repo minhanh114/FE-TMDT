@@ -134,8 +134,8 @@ const ProductsList = ({ history }) => {
             )}
 
             {showDeleteModal && (
-              <div className="modal fade">
-                <div className="modal" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
+              <div className="modal-backdrop fade show">
+                <div className="modal fade" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
                   <div className="modal-dialog" role="document">
                     <div className="modal-content">
                       <div className="modal-header">
