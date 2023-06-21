@@ -1051,6 +1051,11 @@ a {
   color: red;
 }
 
+.modal-backdrop.show {
+  opacity: 0.5 !important;
+}
+
+
 @font-face {
   font-family: "custom-001";
   src: url("https://db.onlinewebfonts.com/t/d866d1b97392f17f9abb424d7314c559.eot"); /* IE9*/
