@@ -33,9 +33,9 @@ const Login = ({ history, location }) => {
 
     }, [dispatch, alert, isAuthenticated, error, history, redirect])
 
-    const submitHandler = async (e) => {
+    const submitHandler = (e) => {
         e.preventDefault();
-        await login(email, password)(dispatch)
+        dispatch(login(email, password))
     }
 
     return (
