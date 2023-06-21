@@ -43,7 +43,7 @@ const ProductsList = ({ history }) => {
     const deleteProductHandler = (id) => {
         dispatch(deleteProduct(id))
     }
-    
+
     const setProducts = () => {
         const data = {
             columns: [
@@ -96,7 +96,7 @@ const ProductsList = ({ history }) => {
                     </button>
                     {/* model delete */}
                     <div>
-                        <div className="modal fade" id="exampleModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal fade"  id={`exampleModal${product._id}`} tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div className="modal-dialog" role="document">
                                 <div className="modal-content">
                                     <div className="modal-header">
