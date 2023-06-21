@@ -133,45 +133,49 @@ const ProductsList = ({ history }) => {
                             <MDBDataTable data={setProducts()} className="px-3" bordered striped hover />
                         )}
 
-                        {showDeleteModal && (
-                            <div className="modal-backdrop fade show">
-                                <div className="modal-dialog" role="document">
-                                    <div className="modal-content">
-                                        <div className="modal-header">
-                                            <h5 className="modal-title" id="exampleModalLabel">
-                                                Thông báo!
-                                            </h5>
-                                            <button
-                                                type="button"
-                                                className="close"
-                                                data-dismiss="modal"
-                                                aria-label="Close"
-                                                onClick={() => setShowDeleteModal(false)}
-                                            >
-                                                <span aria-hidden="true">×</span>
-                                            </button>
-                                        </div>
-                                        <div className="modal-body">Bạn có muốn xóa không?</div>
-                                        <div className="modal-footer">
-                                            <button
-                                                type="button"
-                                                className="btn btn-secondary"
-                                                onClick={() => setShowDeleteModal(false)}
-                                            >
-                                                Hủy
-                                            </button>
-                                            <button
-                                                type="button"
-                                                className="btn btn-danger"
-                                                onClick={() => deleteProductHandler(selectedProductId)}
-                                            >
-                                                Xóa
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+{showDeleteModal && (
+              <div className="modal-backdrop fade show" style={{ display: 'block' }}>
+                <div className="modal" tabIndex={-1} role="dialog" style={{ display: 'block' }}>
+                  <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">
+                          Thông báo!
+                        </h5>
+                        <button
+                          type="button"
+                          className="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                          onClick={() => setShowDeleteModal(false)}
+                        >
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div className="modal-body">Bạn có muốn xóa không?</div>
+                      <div className="modal-footer">
+                        <button
+                          type="button"
+                          className="btn btn-secondary"
+                          data-dismiss="modal"
+                          onClick={() => setShowDeleteModal(false)}
+                        >
+                          Hủy
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-danger"
+                          data-dismiss="modal"
+                          onClick={() => deleteProductHandler(selectedProductId)}
+                        >
+                          Xóa
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
                     </Fragment>
                 </div>
