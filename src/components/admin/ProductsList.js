@@ -134,8 +134,7 @@ const ProductsList = ({ history }) => {
                         )}
 
                         {showDeleteModal && (
-                            <div>
-                                <div className="modal-backdrop fade show" style={{ display: 'block' }}></div>
+                            <div className="modal fade show" style={{ display: 'block' }}>
                                 <div className="modal-dialog" role="document">
                                     <div className="modal-content">
                                         <div className="modal-header">
@@ -157,6 +156,7 @@ const ProductsList = ({ history }) => {
                                             <button
                                                 type="button"
                                                 className="btn btn-secondary"
+                                                data-dismiss="modal"
                                                 onClick={() => setShowDeleteModal(false)}
                                             >
                                                 Hủy
@@ -165,6 +165,7 @@ const ProductsList = ({ history }) => {
                                                 type="button"
                                                 className="btn btn-danger"
                                                 onClick={() => deleteProductHandler(selectedProductId)}
+                                                data-dismiss="modal"
                                             >
                                                 Xóa
                                             </button>
@@ -173,6 +174,7 @@ const ProductsList = ({ history }) => {
                                 </div>
                             </div>
                         )}
+
 
                     </Fragment>
                 </div>
