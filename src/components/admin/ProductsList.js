@@ -85,32 +85,36 @@ const ProductsList = ({ history }) => {
                 id: product._id,
                 name: product.name,
                 price: `${(product.price).toLocaleString()} VNĐ`,
-                price_discount: `${(product.price - (product.price*product.discount)).toLocaleString()} VNĐ`,
+                price_discount: `${(product.price - (product.price * product.discount)).toLocaleString()} VNĐ`,
                 stock: product.stock,
                 actions: <Fragment>
                     <Link to={`/admin/product/${product._id}`} className="btn btn-primary py-1 px-2">
                         <i className="fa fa-pencil"></i>
                     </Link>
                     <button className="btn btn-danger py-1 px-2 ml-2" data-toggle="modal" data-target="#exampleModal" >
-                    <i class="bi bi-trash3"></i>
+                        <i class="bi bi-trash3"></i>
                     </button>
                     {/* model delete */}
                     <div>
-                        <div className="modal fade"  id={`exampleModal${product._id}`} tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div className="modal fade" id={`exampleModal${product._id}`} tabIndex={-1} role="dialog" aria-labelledby={`exampleModalLabel${product._id}`} aria-hidden="true">
                             <div className="modal-dialog" role="document">
                                 <div className="modal-content">
                                     <div className="modal-header">
-                                        <h5 className="modal-title" id="exampleModalLabel">Thông báo!</h5>
-                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                        <h5 className="modal-title" id={`exampleModalLabel${product._id}`}>
+                                            Thông báo!
+                                        </h5>
+                                        <button type="button" className="close" data-dismiss={`#exampleModal${product._id}`} aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
-                                        Bạn có muốn xóa không
-                                    </div>
+                                    <div className="modal-body">Bạn có muốn xóa không?</div>
                                     <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                        <button type="button" className="btn btn-danger" onClick={() => deleteProductHandler(product._id)} data-dismiss="modal">Xóa</button>
+                                        <button type="button" className="btn btn-secondary" data-dismiss={`#exampleModal${product._id}`}>
+                                            Hủy
+                                        </button>
+                                        <button type="button" className="btn btn-danger" onClick={() => deleteProductHandler(product._id)} data-dismiss={`#exampleModal${product._id}`}>
+                                            Xóa
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +127,7 @@ const ProductsList = ({ history }) => {
         return data;
     }
 
-    
+
 
     return (
         <Fragment>
