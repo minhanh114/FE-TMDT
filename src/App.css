@@ -189,8 +189,6 @@ nav {
 }
 
 .card-img-top {
-  width: 290px;
-  height: 205px;
   transition: transform 0.3s ease-in-out;
 }
 
