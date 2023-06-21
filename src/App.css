@@ -152,9 +152,6 @@ nav {
   text-decoration: none;
   position: relative;
 }
-.card-title{
-  text-indent: 20px;
-}
 .card-title a:hover {
   color: #fa9c23;
   text-decoration: none;
@@ -171,9 +168,7 @@ nav {
   white-space: nowrap;
 }
 
-.card-body {
-  padding-left: 0;
-}
+
 
 .card-text {
   font-size: 1.4rem;
