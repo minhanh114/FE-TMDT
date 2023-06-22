@@ -26,11 +26,15 @@ const UpdateProduct = ({ match, history }) => {
     const { category } = useSelector(state => state.category)
 
     const manufacture = [
-        'Nike',
-        'Gucci',
-        'MWC',
-        'JuDo',
-
+        'Nike', //sneaker
+        'Adidas', //sneaker
+        'New Balance', //sneaker
+        'JuNo', //sandals
+        'Bitis', //sandals
+        'Roger Vivier', //cao gót
+        'Alexander McQueen', //cao gót
+        'DR. MARTENS', //boots
+        'Saint Laurent' //boots
     ]
 
     const alert = useAlert();
@@ -162,6 +166,7 @@ const UpdateProduct = ({ match, history }) => {
                                 <div className="form-group">
                                     <label htmlFor="category_field">Danh mục</label>
                                     <select className="form-control" id="category_field" value={categoryi} onChange={(e) => setCategory(e.target.value)}>
+                                        <option value='' disabled>Chọn</option>
                                         {category.map(categoryId => (
                                             <option key={categoryId._id} value={categoryId._id} >{categoryId.name}</option>
                                         ))}
@@ -198,6 +203,7 @@ const UpdateProduct = ({ match, history }) => {
                                         className="form-control"
                                         value={seller}
                                         onChange={(e) => setSeller(e.target.value)}>
+                                        <option value='' disabled>Chọn</option>
                                         {manufacture.map((manufactureId) => (
                                             <option key={manufactureId} value={manufactureId}>{manufactureId}</option>
                                         ))}
