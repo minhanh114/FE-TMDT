@@ -30,7 +30,7 @@ const NewProduct = ({ history }) => {
         'Roger Vivier', //cao gót
         'Alexander McQueen', //cao gót
         'DR. MARTENS', //boots
-        'SAINT LAURENT' //boots
+        'Saint Laurent' //boots
     ]
 
     const alert = useAlert();
@@ -139,7 +139,7 @@ const NewProduct = ({ history }) => {
                                 <div className="form-group">
                                     <label htmlFor="category_field">Danh mục</label>
                                     <select className="form-control" id="category_field" value={categoryi} onChange={(e) => setCategory(e.target.value)}>
-                                        <option value="">Chọn</option>
+                                        <option value="" disabled>Chọn</option>
                                         {category.map(categoryId => (
                                             <option key={categoryId._id} value={categoryId._id} >{categoryId.name}</option>
                                         ))}
@@ -160,7 +160,7 @@ const NewProduct = ({ history }) => {
                                 <div className="form-group">
                                     <label htmlFor="seller_field">Xuất sứ</label>
                                     <select className='form-control' id='seller_field' value={seller} onChange={(e) => setSeller(e.target.value)}>
-                                        <option value="">Chọn</option>
+                                        <option value="" disabled>Chọn</option>
                                         {producers.map(producer => (
                                             <option key={producer} value={producer}>{producer}</option>
                                         ))}
