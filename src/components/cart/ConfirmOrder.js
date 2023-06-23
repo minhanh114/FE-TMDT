@@ -42,7 +42,7 @@ const ConfirmOrder = ({ history }) => {
                     <h4 className="mb-3">Thông tin vận chuyển</h4>
                     <p><b>Tên khách hàng:</b> {user && user.name}</p>
                     <p><b>Số điện thoại:</b> {shippingInfo.phoneNo}</p>
-                    <p className="mb-4"><b>Địa chỉ:</b> {`${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`}</p>
+                    <p className="mb-4"><b>Địa chỉ:</b> {`${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.country}`}</p>
 
                     <hr />
                     <h4 className="mt-4">Các mặt hàng trong giỏ hàng của bạn:</h4>

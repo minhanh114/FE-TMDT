@@ -26,7 +26,7 @@ const OrderDetails = ({ match }) => {
         }
     }, [dispatch, alert, error, match.params.id])
 
-    const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`
+    const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.country}`
 
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false
     //chuyển đổi tiền tệ
