@@ -158,7 +158,7 @@ const NewProduct = ({ history }) => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="seller_field">Xuất sứ</label>
+                                    <label htmlFor="seller_field">Thương hiệu</label>
                                     <select className='form-control' id='seller_field' value={seller} onChange={(e) => setSeller(e.target.value)}>
                                         <option value="" disabled>Chọn</option>
                                         {producers.map(producer => (

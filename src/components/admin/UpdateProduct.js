@@ -196,7 +196,7 @@ const UpdateProduct = ({ match, history }) => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="seller_field">Xuất xứ</label>
+                                    <label htmlFor="seller_field">Thương hiệu</label>
                                     <select
                                         type="text"
                                         id="seller_field"
